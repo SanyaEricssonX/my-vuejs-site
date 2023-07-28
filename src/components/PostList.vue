@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <h3>Список пользователей</h3>
-    <post-item v-for="post in posts" :post="post" />
+  <div v-if="posts.length > 0">
+    <h3>Список постов</h3>
+    <post-item
+      v-for="post in posts"
+      :post="post"
+      :key="post.id"
+      @remove="$emit('remove', post)"
+    />
   </div>
+  <h2 class="list__empty" v-else>Список постов пуст</h2>
 </template>
 
 <script>
@@ -22,4 +28,7 @@ export default {
 </script>
 
 <style scoped>
+.list__empty {
+  color: teal;
+}
 </style>
